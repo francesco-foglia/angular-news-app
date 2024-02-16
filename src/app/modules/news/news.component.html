@@ -8,7 +8,8 @@
 <main class="px-[5%]">
   <div *ngFor="let newsItem of newsItems; let last = last" class="pt-3">
     <mat-card>
-      <a href="{{ newsItem.url ? newsItem.url : '#' }}" target="_blank" rel="noopener noreferrer nofollow"
+      <a href="{{ newsItem.url ? newsItem.url : '#' }}" target="{{ newsItem.url ? '_blank' : '' }}"
+        rel="noopener noreferrer nofollow"
         class="underline underline-offset-2 hover:text-[#c2185b] transition-all duration-100 ease-in-out">
         <h2 class="inline">{{ newsItem.title }}</h2>
       </a>
@@ -26,41 +27,41 @@
         <mat-icon class="text-lg mb-[2px]">thumb_up</mat-icon>
       </div>
 
-      <div *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
-        {{ newsItem.comments.length === 1 ? '1 &nbsp; comment' : newsItem.comments.length + ' &nbsp; comments' }}
-      </div>
-
       <div *ngIf="!newsItem.comments || newsItem.comments.length === 0" class="my-3">
         0 &nbsp; comments
       </div>
 
       <div *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
-        <ul>
-          <li *ngFor="let comment of newsItem.comments">
-            <mat-accordion>
-              <mat-expansion-panel hideToggle>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <span class="pt-0.5">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
 
-                      <p>
-                        <span class="capitalize">{{ comment.type }}</span> by
-                        <span class="italic font-medium mr-1">{{ comment.by }}</span>
-                        <span> - {{ (comment.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
-                      </p>
+                <span class="pt-0.5">
+                  <span *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
+                    {{ newsItem.comments.length === 1 ? '1 &nbsp; comment' :
+                    newsItem.comments.length + ' &nbsp; comments' }}
+                  </span>
+                </span>
 
-                    </span>
-                  </mat-panel-title>
-                  <mat-panel-description>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
+              </mat-panel-title>
+              <mat-panel-description>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
 
-                <p [innerHTML]="comment.text" class="overflow-auto"></p>
+            <div *ngFor="let comment of newsItem.comments; let last = last">
+              <p>
+                &#8226;
+                <span class="capitalize">{{ comment.type }}</span> by
+                <span class="italic font-medium mr-1">{{ comment.by ? comment.by : '...' }}</span>
+                <span> - {{ (comment.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
+              </p>
+              <p [innerHTML]="comment.text ? comment.text : '...'" class="overflow-auto break-words"></p>
+              <hr *ngIf="!last" class="mb-3 border-transparent">
+            </div>
 
-              </mat-expansion-panel>
-            </mat-accordion>
-          </li>
-        </ul>
+          </mat-expansion-panel>
+        </mat-accordion>
       </div>
     </mat-card>
 

@@ -51,3 +51,7 @@ p {
 .mat-expansion-panel-body {
   padding: 0px 18px 18px !important;
 }
+
+.mat-expansion-panel {
+  box-shadow: 0px 3px 1px -2px #292A2D, 0px 2px 2px 0px #292A2D, 0px 1px 5px 0px #292A2D !important;
+}
