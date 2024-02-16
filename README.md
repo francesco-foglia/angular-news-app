@@ -1,4 +1,4 @@
-# AngularNewsApp
+# Angular News App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.5.
 
@@ -25,3 +25,41 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Other resources used
+
+[Angular Material](https://material.angular.io/) <br>
+[Tailwind CSS](https://tailwindcss.com/) <br>
+[Axios](https://axios-http.com/) <br>
+[Hacker News API](https://github.com/HackerNews/API)
+
+## Functionality
+
+The app displays the list of the latest 10 news stories available via the Hacker News external service API.
+By using a "Load more" button, the app allows the user to view the next 10 news stories.
+
+## Try the app
+
+https://angular-news-app.vercel.app
+
+## Project setup
+
+### Install [Node.js](https://nodejs.org/)
+
+### Clone the repository
+
+```
+git clone https://github.com/francesco-foglia/angular-news-app
+```
+
+### Install the dependencies
+
+```
+npm install
+```
+
+### Run the app
+
+```
+ng serve
+```
