@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #292A2D;
+  color: white;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media screen and (min-width: 1024px) {
+  ::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 7px grey;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c2185b;
+    border-radius: 7px;
+  }
+}
