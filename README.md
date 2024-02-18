@@ -63,3 +63,9 @@ npm install
 ```
 ng serve
 ```
+
+## Screenshots
+
+![Img1](/src/assets/readme-img/angular-news-app-1.png)
+
+![Img2](/src/assets/readme-img/angular-news-app-2.png)
