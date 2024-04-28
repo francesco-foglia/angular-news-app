@@ -1,80 +1,82 @@
-<header class="px-[5%] pt-9 pb-6">
-  <a href="https://github.com/HackerNews/API" target="_blank"
-    class="underline underline-offset-2 decoration-1 hover:text-[#c2185b] transition-all duration-100 ease-in-out">
-    <h1 class="inline">Hacker News</h1>
-  </a>
-</header>
+<div class="2xl:container mx-auto">
+  <header class="px-[5%] pt-9 pb-6">
+    <a href="https://github.com/HackerNews/API" target="_blank"
+      class="underline underline-offset-2 decoration-1 hover:text-[#c2185b] transition-all duration-100 ease-in-out">
+      <h1 class="inline">Hacker News</h1>
+    </a>
+  </header>
 
-<main class="px-[5%]">
-  <div *ngFor="let newsItem of newsItems; let last = last" class="pt-3">
-    <mat-card>
-      <a href="{{ newsItem.url ? newsItem.url : '#' }}" target="{{ newsItem.url ? '_blank' : '' }}"
-        rel="noopener noreferrer nofollow"
-        class="underline underline-offset-2 hover:text-[#c2185b] transition-all duration-100 ease-in-out">
-        <h2 class="inline">{{ newsItem.title }}</h2>
-      </a>
+  <main class="px-[5%]">
+    <div *ngFor="let newsItem of newsItems; let last = last" class="pt-3">
+      <mat-card>
+        <a href="{{ newsItem.url ? newsItem.url : '#' }}" target="{{ newsItem.url ? '_blank' : '' }}"
+          rel="noopener noreferrer nofollow"
+          class="underline underline-offset-2 hover:text-[#c2185b] transition-all duration-100 ease-in-out">
+          <h2 class="inline">{{ newsItem.title }}</h2>
+        </a>
 
-      <div class="my-3">
-        <p>
-          <span class="capitalize">{{ newsItem.type }}</span> by
-          <span class="italic font-medium mr-1">{{ newsItem.by }}</span>
-          <span> - {{ (newsItem.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
-        </p>
-      </div>
+        <div class="my-3">
+          <p>
+            <span class="capitalize">{{ newsItem.type }}</span> by
+            <span class="italic font-medium mr-1">{{ newsItem.by }}</span>
+            <span> - {{ (newsItem.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
+          </p>
+        </div>
 
-      <div class="flex justify-start items-end my-3">
-        <span class="mr-2.5">{{ newsItem.score }}</span>
-        <mat-icon class="text-lg mb-[2px]">thumb_up</mat-icon>
-      </div>
+        <div class="flex justify-start items-end my-3">
+          <span class="mr-2.5">{{ newsItem.score }}</span>
+          <mat-icon class="text-lg mb-[2px]">thumb_up</mat-icon>
+        </div>
 
-      <div *ngIf="!newsItem.comments || newsItem.comments.length === 0" class="my-3">
-        0 &nbsp; comments
-      </div>
+        <div *ngIf="!newsItem.comments || newsItem.comments.length === 0" class="my-3">
+          0 &nbsp; comments
+        </div>
 
-      <div *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
-        <mat-accordion>
-          <mat-expansion-panel hideToggle>
-            <mat-expansion-panel-header>
-              <mat-panel-title>
+        <div *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
+          <mat-accordion>
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
 
-                <span class="pt-0.5">
-                  <span *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
-                    {{ newsItem.comments.length === 1 ? '1 &nbsp; comment' :
-                    newsItem.comments.length + ' &nbsp; comments' }}
+                  <span class="pt-0.5">
+                    <span *ngIf="newsItem.comments && newsItem.comments.length > 0" class="my-3">
+                      {{ newsItem.comments.length === 1 ? '1 &nbsp; comment' :
+                      newsItem.comments.length + ' &nbsp; comments' }}
+                    </span>
                   </span>
-                </span>
 
-              </mat-panel-title>
-              <mat-panel-description>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
 
-            <div *ngFor="let comment of newsItem.comments; let last = last">
-              <p>
-                &#8226;
-                <span class="capitalize">{{ comment.type }}</span> by
-                <span class="italic font-medium mr-1">{{ comment.by ? comment.by : '...' }}</span>
-                <span> - {{ (comment.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
-              </p>
-              <p [innerHTML]="comment.text ? comment.text : '...'" class="overflow-auto break-words"></p>
-              <hr *ngIf="!last" class="mb-3 border-transparent">
-            </div>
+              <div *ngFor="let comment of newsItem.comments; let last = last">
+                <p>
+                  &#8226;
+                  <span class="capitalize">{{ comment.type }}</span> by
+                  <span class="italic font-medium mr-1">{{ comment.by ? comment.by : '...' }}</span>
+                  <span> - {{ (comment.time * 1000) | date: 'dd/MM/yyyy, HH:mm:ss' }}</span>
+                </p>
+                <p [innerHTML]="comment.text ? comment.text : '...'" class="overflow-auto break-words"></p>
+                <hr *ngIf="!last" class="mb-3 border-transparent">
+              </div>
 
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-    </mat-card>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+      </mat-card>
 
-    <hr *ngIf="!last" class="border-[#ffffff1f] mt-3">
-  </div>
+      <hr *ngIf="!last" class="border-[#ffffff1f] mt-3">
+    </div>
 
-  <p *ngIf="errorMessage" class="text-red-500 pt-3">{{ errorMessage }}</p>
-</main>
+    <p *ngIf="errorMessage" class="text-red-500 pt-3">{{ errorMessage }}</p>
+  </main>
 
-<footer *ngIf="newsItems.length !== 0" class="px-[5%] pt-9 pb-9">
-  <button mat-raised-button color="primary" (click)="loadMore()" [disabled]="loading || newsItems.length === 500">
-    Load more
-  </button>
-</footer>
+  <footer *ngIf="newsItems.length !== 0" class="px-[5%] pt-9 pb-9">
+    <button mat-raised-button color="primary" (click)="loadMore()" [disabled]="loading || newsItems.length === 500">
+      Load more
+    </button>
+  </footer>
 
-<app-spinner [showSpinner]="loading"></app-spinner>
+  <app-spinner [showSpinner]="loading"></app-spinner>
+</div>
